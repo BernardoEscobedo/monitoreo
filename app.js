@@ -1,4 +1,3 @@
-
 const HOY_DEMO = new Date();
 const fHoy = `${String(HOY_DEMO.getDate()).padStart(2,'0')}/${String(HOY_DEMO.getMonth()+1).padStart(2,'0')}/${HOY_DEMO.getFullYear()}`;
 
@@ -21,23 +20,39 @@ const DEMO = [
 
 // COORDENADAS GEO
 const ORIGENES_GEO = {
-  "Finca Marbella":{lat:14.901,lng:-92.258,ciudad:"Tapachula, Chis"},
-  "Finca La Ceiba":{lat:15.022,lng:-92.384,ciudad:"Huehuetán, Chis"},
-  "Finca Doña Nelly":{lat:15.022,lng:-92.384,ciudad:"Huehuetán, Chis"},
-  "Preenfriado Doña Nelly":{lat:15.022,lng:-92.384,ciudad:"Huehuetán, Chis"},
-  "Finca Fortaleza":{lat:14.864,lng:-92.461,ciudad:"Mazatán, Chis"},
-  "Preenfriado Fortaleza":{lat:14.864,lng:-92.461,ciudad:"Mazatán, Chis"},
-  "Finca Génesis":{lat:17.547,lng:-92.952,ciudad:"Teapa, Tab"},
-  "Finca Genesis":{lat:17.547,lng:-92.952,ciudad:"Teapa, Tab"}
+  "Finca Marbella":          {lat:14.901,lng:-92.258,ciudad:"Tapachula, Chis"},
+  "Finca La Ceiba":          {lat:15.022,lng:-92.384,ciudad:"Huehuetán, Chis"},
+  "Finca Doña Nelly":        {lat:15.030,lng:-92.381,ciudad:"Huehuetán, Chis"},
+  "Preenfriado Doña Nelly":  {lat:15.030,lng:-92.381,ciudad:"Huehuetán, Chis"},
+  "Finca Fortaleza":         {lat:14.864,lng:-92.461,ciudad:"Mazatán, Chis"},
+  "Preenfriado Fortaleza":   {lat:14.864,lng:-92.461,ciudad:"Mazatán, Chis"},
+  "Finca Génesis":           {lat:17.547,lng:-92.952,ciudad:"Teapa, Tab"},
+  "Finca Genesis":           {lat:17.547,lng:-92.952,ciudad:"Teapa, Tab"},
+  "Finca Tembladera":        {lat:17.505,lng:-92.890,ciudad:"Huimanguillo, Tab"},
+  "Finca Candelaria":        {lat:17.505,lng:-92.890,ciudad:"Huimanguillo, Tab"},
+  "Finca Plantación":        {lat:14.920,lng:-92.300,ciudad:"Tapachula, Chis"},
+  "Finca Lisboa":            {lat:14.945,lng:-92.310,ciudad:"Tapachula, Chis"},
+  "Finca Mazatán":           {lat:14.864,lng:-92.461,ciudad:"Mazatán, Chis"},
+  "Preenfriado La Rifrut":   {lat:19.119,lng:-103.870,ciudad:"Tecomán, Colima"},
+  "Preenfriado Zarzamora":   {lat:19.090,lng:-103.920,ciudad:"Colima"},
+  "Preenfriado Ochoa CEDIS": {lat:19.100,lng:-103.900,ciudad:"Colima"},
 };
 const DESTINOS_GEO = {
-  "EXPORTACIÓN USA":{lat:27.498,lng:-99.507,ciudad:"Nuevo Laredo · Frontera USA"},
-  "EXPORTACIÓN Japón":{lat:19.054,lng:-104.316,ciudad:"Manzanillo · Puerto Japón"},
-  "WM VSA":{lat:19.179,lng:-96.135,ciudad:"WM Veracruz"},
-  "WM QRO":{lat:20.588,lng:-100.388,ciudad:"WM Querétaro"},
-  "S-MART S-MTY":{lat:25.686,lng:-100.316,ciudad:"S-Mart Monterrey"},
-  "S-MART Cd Juárez":{lat:31.690,lng:-106.424,ciudad:"S-Mart Cd. Juárez"},
-  "CEDIS CEDA":{lat:19.371,lng:-99.094,ciudad:"CEDA · CDMX"}
+  "EXPORTACIÓN USA":    {lat:27.498,lng:-99.507, ciudad:"Nuevo Laredo · Frontera USA"},
+  "EXPORTACIÓN Japón":  {lat:19.054,lng:-104.316,ciudad:"Manzanillo · Puerto Japón"},
+  "WM VSA":             {lat:19.179,lng:-96.135, ciudad:"WM Veracruz"},
+  "WM QRO":             {lat:20.588,lng:-100.388,ciudad:"WM Querétaro"},
+  "WM GDL":             {lat:20.659,lng:-103.349,ciudad:"WM Guadalajara"},
+  "WM MTY":             {lat:25.686,lng:-100.316,ciudad:"WM Monterrey"},
+  "WM CLN":             {lat:18.916,lng:-103.877,ciudad:"WM Colima"},
+  "WM SMO":             {lat:26.982,lng:-109.929,ciudad:"WM Los Mochis"},
+  "WM CDMX (Chalco)":  {lat:19.261,lng:-98.904, ciudad:"WM Chalco · CDMX"},
+  "WM QRO":             {lat:20.588,lng:-100.388,ciudad:"WM Querétaro"},
+  "S-MART S-MTY":       {lat:25.686,lng:-100.316,ciudad:"S-Mart Monterrey"},
+  "S-MART Cd Juárez":   {lat:31.690,lng:-106.424,ciudad:"S-Mart Cd. Juárez"},
+  "CEDIS CEDA":         {lat:19.371,lng:-99.094, ciudad:"CEDA · CDMX"},
+  "CEDA Zumpango":      {lat:19.793,lng:-99.099, ciudad:"CEDA Zumpango"},
+  "Chihuahua":          {lat:28.636,lng:-106.089,ciudad:"Chihuahua"},
 };
 function matchOrigen(nm){
   if(!nm) return null;
@@ -47,26 +62,43 @@ function matchOrigen(nm){
     if(up.includes(k.toUpperCase()) || k.toUpperCase().includes(up)) return ORIGENES_GEO[k];
   }
   // fallback por keywords
-  if(/MARBELLA/i.test(nm)) return ORIGENES_GEO["Finca Marbella"];
-  if(/CEIBA/i.test(nm)) return ORIGENES_GEO["Finca La Ceiba"];
-  if(/NELLY/i.test(nm)) return ORIGENES_GEO["Preenfriado Doña Nelly"];
-  if(/FORTALEZA/i.test(nm)) return ORIGENES_GEO["Finca Fortaleza"];
-  if(/GENESIS|GÉNESIS/i.test(nm)) return ORIGENES_GEO["Finca Génesis"];
+  if(/MARBELLA/i.test(nm))           return ORIGENES_GEO["Finca Marbella"];
+  if(/CEIBA/i.test(nm))              return ORIGENES_GEO["Finca La Ceiba"];
+  if(/NELLY/i.test(nm))              return ORIGENES_GEO["Preenfriado Doña Nelly"];
+  if(/FORTALEZA/i.test(nm))          return ORIGENES_GEO["Preenfriado Fortaleza"];
+  if(/GENESIS|GÉNESIS/i.test(nm))    return ORIGENES_GEO["Finca Génesis"];
+  if(/TEMBLADERA/i.test(nm))         return ORIGENES_GEO["Finca Tembladera"];
+  if(/CANDELARIA/i.test(nm))         return ORIGENES_GEO["Finca Candelaria"];
+  if(/PLANTACI/i.test(nm))           return ORIGENES_GEO["Finca Plantación"];
+  if(/LISBOA/i.test(nm))             return ORIGENES_GEO["Finca Lisboa"];
+  if(/MAZAT[AÁ]N/i.test(nm))         return ORIGENES_GEO["Finca Mazatán"];
+  if(/RIFRUT|LARIFRUT/i.test(nm))    return ORIGENES_GEO["Preenfriado La Rifrut"];
+  if(/ZARZAMORA/i.test(nm))          return ORIGENES_GEO["Preenfriado Zarzamora"];
+  if(/OCHOA/i.test(nm))              return ORIGENES_GEO["Preenfriado Ochoa CEDIS"];
+  // Fincas Colima y Tabasco sin nombre específico → centroide de zona
+  if(/colima/i.test(nm))             return {lat:19.100,lng:-103.900,ciudad:"Colima"};
+  if(/tabasco/i.test(nm))            return {lat:17.547,lng:-92.952, ciudad:"Tabasco"};
+  if(/chiapas/i.test(nm))            return {lat:14.901,lng:-92.258, ciudad:"Chiapas"};
   return null;
 }
 function matchDestino(nm){
   if(!nm) return null;
   if(DESTINOS_GEO[nm]) return DESTINOS_GEO[nm];
   for(const k in DESTINOS_GEO){
-    if(nm.toUpperCase().includes(k.toUpperCase().split(' ')[0])) return DESTINOS_GEO[k];
+    if(nm.toUpperCase().includes(k.toUpperCase())) return DESTINOS_GEO[k];
   }
-  if(/USA|EUA|EXPORT.*US/i.test(nm)) return DESTINOS_GEO["EXPORTACIÓN USA"];
-  if(/JAPON|JAPÓN|KODAWARI/i.test(nm)) return DESTINOS_GEO["EXPORTACIÓN Japón"];
+  if(/USA|EUA|EXPORT.*US|MC.*ALLEN|ALLEN/i.test(nm)) return DESTINOS_GEO["EXPORTACIÓN USA"];
+  if(/JAPON|JAPÓN|KODAWARI|MAR$/i.test(nm)) return DESTINOS_GEO["EXPORTACIÓN Japón"];
   if(/QRO|QUER/i.test(nm)) return DESTINOS_GEO["WM QRO"];
   if(/VSA|VERAC/i.test(nm)) return DESTINOS_GEO["WM VSA"];
-  if(/MTY|MONTERREY/i.test(nm)) return DESTINOS_GEO["S-MART S-MTY"];
-  if(/JUAR/i.test(nm)) return DESTINOS_GEO["S-MART Cd Juárez"];
-  if(/CEDA|CDMX|CEDIS/i.test(nm)) return DESTINOS_GEO["CEDIS CEDA"];
+  if(/GDL|GUADAL/i.test(nm)) return DESTINOS_GEO["WM GDL"];
+  if(/^WM\s*MTY|^WM\s*MONTERREY/i.test(nm)) return DESTINOS_GEO["WM MTY"];
+  if(/S-MART.*MTY|SMART.*MTY/i.test(nm)) return DESTINOS_GEO["S-MART S-MTY"];
+  if(/CLN|COLIMA/i.test(nm)) return DESTINOS_GEO["WM CLN"];
+  if(/SMO|MOCHIS/i.test(nm)) return DESTINOS_GEO["WM SMO"];
+  if(/JUAR|JUÁREZ/i.test(nm)) return DESTINOS_GEO["S-MART Cd Juárez"];
+  if(/CEDA|CDMX|CEDIS|TULTITLAN|CHALCO|ZUMPANGO|SORIANA/i.test(nm)) return DESTINOS_GEO["CEDIS CEDA"];
+  if(/CHIHUAHUA/i.test(nm)) return DESTINOS_GEO["Chihuahua"];
   return null;
 }
 
@@ -387,56 +419,190 @@ function render(){
   setTimeout(()=>renderMap(), 100);
 }
 
+// ── MAPEO: columnas reales de monitoreo.xlsx → campos del dashboard ──────────
+function excelTsFecha(val){
+  // Convierte serial Excel o Timestamp JS → "DD/MM/YYYY"
+  if(!val && val !== 0) return "";
+  if(typeof val === 'number' && val > 30000){
+    const dt = new Date((val - 25569) * 86400 * 1000);
+    return `${String(dt.getDate()).padStart(2,'0')}/${String(dt.getMonth()+1).padStart(2,'0')}/${dt.getFullYear()}`;
+  }
+  if(val instanceof Date || (typeof val === 'object' && val.getFullYear)){
+    const dt = val;
+    return `${String(dt.getDate()).padStart(2,'0')}/${String(dt.getMonth()+1).padStart(2,'0')}/${dt.getFullYear()}`;
+  }
+  return String(val).trim();
+}
+
+function excelTsHora(val){
+  // Convierte fracción de día, Date, o serial con hora → "HH:MM"
+  if(!val && val !== 0) return "";
+  if(typeof val === 'number'){
+    const frac = val % 1;
+    if(frac > 0){
+      const totMin = Math.round(frac * 1440);
+      return `${String(Math.floor(totMin/60)).padStart(2,'0')}:${String(totMin%60).padStart(2,'0')}`;
+    }
+    return "";
+  }
+  if(val instanceof Date || (typeof val === 'object' && val.getHours)){
+    return `${String(val.getHours()).padStart(2,'0')}:${String(val.getMinutes()).padStart(2,'0')}`;
+  }
+  // time string "HH:MM:SS"
+  const s = String(val).trim();
+  if(/^\d{1,2}:\d{2}/.test(s)) return s.slice(0,5);
+  return s;
+}
+
+// Código de preenfriado → nombre legible de almacén
+const PREENFRIO_NM = {
+  'CP_CHI_NELLY':    'Preenfriado Doña Nelly',
+  'CP_CHI_FORTALEZA':'Preenfriado Fortaleza',
+  'CP_LARIFRUT':     'Preenfriado La Rifrut',
+  'CP_ZARZAMORA':    'Preenfriado Zarzamora',
+  'CP_OCHOA_CEDIS':  'Preenfriado Ochoa CEDIS',
+};
+
+function resolveAlmacen(preenfrio, finca, zona){
+  const p = String(preenfrio||"").trim().toUpperCase();
+  const f = String(finca||"").trim();
+  const z = String(zona||"").trim();
+  if(PREENFRIO_NM[p]) return PREENFRIO_NM[p];
+  // Derivar de FINCA (código + nombre)
+  if(/MARBELLA/i.test(f))    return 'Finca Marbella';
+  if(/CEIBA/i.test(f))       return 'Finca La Ceiba';
+  if(/NELLY/i.test(f))       return 'Finca Doña Nelly';
+  if(/FORTALEZA/i.test(f))   return 'Finca Fortaleza';
+  if(/PLANTACI/i.test(f))    return 'Finca Plantación';
+  if(/LISBOA/i.test(f))      return 'Finca Lisboa';
+  if(/MAZATAN|MAZATÁN/i.test(f)) return 'Finca Mazatán';
+  if(/GENESIS|GÉNESIS/i.test(f)) return 'Finca Génesis';
+  if(/TEMBLADERA/i.test(f))  return 'Finca Tembladera';
+  if(/CANDELARIA/i.test(f))  return 'Finca Candelaria';
+  if(f) return `${z ? z+' · ' : ''}${f}`;
+  return z || '—';
+}
+
+function resolveDestino(cedis, cliente){
+  const c = String(cedis||"").trim();
+  const cl = String(cliente||"").trim();
+  if(/jap[oó]n?/i.test(c) || cl === 'Mar') return 'EXPORTACIÓN Japón';
+  if(/mc\s*allen|allen/i.test(c))           return 'EXPORTACIÓN USA';
+  if(/cd\s*ju[aá]rez|ju[aá]rez/i.test(c))  return 'S-MART Cd Juárez';
+  if(/^S-MTY$/i.test(c))                    return 'S-MART S-MTY';
+  if(/^VSA$/i.test(c))                      return 'WM VSA';
+  if(/^MTY$/i.test(c))                      return 'WM MTY';
+  if(/^GDL$/i.test(c))                      return 'WM GDL';
+  if(/^CLN$/i.test(c))                      return 'WM CLN';
+  if(/^SMO$/i.test(c))                      return 'WM SMO';
+  if(/^QRO$/i.test(c))                      return 'WM QRO';
+  if(/^CHALCO$/i.test(c))                   return 'WM CDMX (Chalco)';
+  if(/^ZUMPANGO$/i.test(c))                 return 'CEDA Zumpango';
+  if(/tultitl[aá]n|chalco|ceda|cdmx/i.test(c) || /CEDA/i.test(cl) || /soriana/i.test(cl)) return 'CEDIS CEDA';
+  if(/chihuahua/i.test(c))                  return 'Chihuahua';
+  if(/rechazo/i.test(c))                    return `RECHAZO (${cl})`;
+  if(/local/i.test(c))                      return `LOCAL (${cl})`;
+  return cl ? `${c} · ${cl}` : c;
+}
+
+// ── NOMBRE DEL EXCEL EN SHAREPOINT ───────────────────────────────────────────
+// Debe estar en la MISMA carpeta que index.html dentro de la biblioteca.
+// Si lo cambias de nombre, actualiza sólo esta línea:
+const EXCEL_FILENAME = "monitoreo.xlsx";
+
+// ── GETTER robusto por nombre de columna (case/trim insensible) ───────────────
+function mkGetter(row){
+  const norm = {};
+  for(const k of Object.keys(row)) norm[k.toLowerCase().trim()] = row[k];
+  return (...ks) => {
+    for(const k of ks){
+      const v = norm[k.toLowerCase().trim()];
+      if(v !== undefined && v !== null && v !== "") return v;
+    }
+    return "";
+  };
+}
+
+// ── PARSER COMPARTIDO: ArrayBuffer → DATA_RAW ────────────────────────────────
+function parseExcelBuffer(buffer){
+  const wb = XLSX.read(buffer, {type:'array', cellDates:true});
+  const ws = wb.Sheets[wb.SheetNames[0]];
+  const json = XLSX.utils.sheet_to_json(ws, {defval:"", raw:false});
+
+  const raw = json.map(row=>{
+    const get = mkGetter(row);
+
+    // FECHA y HORA: de "FECHA Y HORA DE SALIDA REAL"
+    const tsReal = get("fecha y hora de salida real");
+    const fecha  = excelTsFecha(tsReal);
+    let hora = "";
+    if(tsReal instanceof Date){
+      hora = `${String(tsReal.getHours()).padStart(2,'0')}:${String(tsReal.getMinutes()).padStart(2,'0')}`;
+    } else {
+      hora = excelTsHora(get("hora cita","hora"));
+    }
+
+    const folio         = String(get("oc flete","oc_flete","folio","no. embarque","no embarque")||"").trim();
+    const almacen       = resolveAlmacen(get("preenfrio","eco - bodega","eco-bodega"), get("finca"), get("zona"));
+    const destino       = resolveDestino(get("cedis"), get("cliente"));
+    const transportista = String(get("linea","transportista","operador")||"").trim();
+    const esExp         = /export|usa|jap[oó]n|allen/i.test(destino);
+    const unidad        = esExp ? "Full" : "53 Pies";
+    const cajas         = 1;   // cada OC FLETE = 1 unidad en tránsito
+    const calidad       = String(get("nivel de servicio")||"").trim() || "—";
+    const producto      = String(get("observaciones","incidencia o comentarios","estatus")||"").trim() || "—";
+
+    return { fecha, folio, almacen, destino, transportista, unidad, hora, cajas, calidad, producto };
+  }).filter(r => r.folio && r.folio !== "NaN");
+
+  // Deduplicar por folio
+  const map = {};
+  raw.forEach(r=>{ if(!map[r.folio]) map[r.folio] = {...r}; });
+  return Object.values(map);
+}
+
+// ── CARGA AUTOMÁTICA DESDE SHAREPOINT (fetch por URL relativa) ───────────────
+// Agrega ?t=... para evitar caché del navegador/SharePoint en cada refresh.
+async function cargarExcelAuto(silencioso = false){
+  try {
+    const url = `${EXCEL_FILENAME}?t=${Date.now()}`;
+    const resp = await fetch(url, {cache: "no-store"});
+    if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const buffer = await resp.arrayBuffer();
+    const parsed = parseExcelBuffer(new Uint8Array(buffer));
+    if(parsed.length === 0) throw new Error("Sin registros válidos");
+    DATA_RAW = parsed;
+    render();
+    const td = todayData();
+    if(!silencioso){
+      showToast(`● DATOS ACTUALIZADOS · ${DATA_RAW.length} UNIDADES · ${td.length} HOY`);
+    }
+    console.log(`[monitoreo] Excel cargado: ${DATA_RAW.length} registros, ${td.length} hoy`);
+  } catch(err){
+    console.warn('[monitoreo] No se pudo cargar el Excel automáticamente:', err.message);
+    // Si falla el fetch (ej. abriendo file:// localmente), el DEMO sigue activo
+    // y el usuario puede cargar manualmente con el botón de archivo.
+  }
+}
+
+// ── CARGA MANUAL (botón de archivo — respaldo y uso local) ───────────────────
 $('fileInp').addEventListener('change', e=>{
   const f = e.target.files[0]; if(!f) return;
-  const r = new FileReader();
-  r.onload = ev=>{
-    const wb = XLSX.read(ev.target.result, {type:'array', cellDates:false});
-    const ws = wb.Sheets[wb.SheetNames[0]];
-    const json = XLSX.utils.sheet_to_json(ws, {defval:"", raw:true});
-    const raw = json.map(row=>{
-      const get = (...ks)=>{
-        for(const k of ks){
-          for(const key of Object.keys(row)){
-            if(key.toLowerCase().trim() === k.toLowerCase()) return row[key];
-          }
-        }
-        return "";
-      };
-      let fecha = get("Fecha");
-      if(typeof fecha === 'number' && fecha > 30000){
-        const dt = new Date((fecha - 25569) * 86400 * 1000);
-        fecha = `${String(dt.getDate()).padStart(2,'0')}/${String(dt.getMonth()+1).padStart(2,'0')}/${dt.getFullYear()}`;
-      }
-      let hora = get("Hora Despacho","Hora");
-      if(typeof hora === 'number' && hora < 2){
-        const totMin = Math.round(hora*1440);
-        hora = `${String(Math.floor(totMin/60)).padStart(2,'0')}:${String(totMin%60).padStart(2,'0')}`;
-      }
-      return {
-        fecha: String(fecha||"").trim(),
-        folio: String(get("No. Embarque","No Embarque","Folio")||"").trim(),
-        almacen: String(get("Almacen","Almacén")||"").trim(),
-        destino: String(get("Destino")||"").trim(),
-        transportista: String(get("Transportista")||"").trim(),
-        unidad: String(get("Tipo Unidad","Tipo de Unidad")||"").trim(),
-        hora: String(hora||"").trim(),
-        cajas: +(get("Cajas Producto","Total Cajas","Cajas")||0),
-        calidad: String(get("Calidad")||"").trim(),
-        producto: String(get("Producto")||"").trim()
-      };
-    }).filter(r=>r.folio);
-    const map = {};
-    raw.forEach(r=>{
-      if(!map[r.folio]){ map[r.folio] = {...r}; }
-      else { map[r.folio].cajas += r.cajas; }
-    });
-    DATA_RAW = Object.values(map);
-    const td = todayData();
-    render();
-    showToast(`✓ ${DATA_RAW.length} REGISTROS · ${td.length} DESPACHOS DE HOY`);
+  const reader = new FileReader();
+  reader.onload = ev=>{
+    try {
+      const parsed = parseExcelBuffer(new Uint8Array(ev.target.result));
+      if(parsed.length === 0) throw new Error("Sin registros válidos");
+      DATA_RAW = parsed;
+      render();
+      const td = todayData();
+      showToast(`✓ ${DATA_RAW.length} UNIDADES CARGADAS · ${td.length} HOY`);
+    } catch(err){
+      console.error('[monitoreo] Error leyendo Excel manual:', err);
+      showToast('✗ ERROR AL LEER EL ARCHIVO — VERIFICA QUE SEA .XLSX VÁLIDO');
+    }
   };
-  r.readAsArrayBuffer(f);
+  reader.readAsArrayBuffer(f);
 });
 
 function showToast(msg){
@@ -456,16 +622,27 @@ setInterval(()=>{
   t.classList.remove('flap'); void t.offsetWidth; t.classList.add('flap');
 }, 1800);
 
+// Auto-refresh visual cada 15 s (KPIs, ticker, tabla)
 setInterval(()=>{
   renderKpis(); renderTimeline(); renderTicker(); renderFids();
   if(leafMap) leafMap.invalidateSize();
   showToast('● TABLERO ACTUALIZADO · ' + new Date().toLocaleTimeString('es-MX'));
 }, 15000);
 
+// Re-carga el Excel desde SharePoint cada 5 minutos para reflejar cambios
+const REFRESH_EXCEL_MS = 5 * 60 * 1000; // 5 min — ajusta si lo necesitas más frecuente
+setInterval(()=>{ cargarExcelAuto(true); }, REFRESH_EXCEL_MS);
+
 window.addEventListener('resize', ()=>{ if(leafMap) leafMap.invalidateSize(); });
 
-setTimeout(()=>{
+// ARRANQUE: intenta cargar el Excel automáticamente; si falla, usa el DEMO
+setTimeout(async ()=>{
   document.getElementById('boot').classList.add('hide');
   setTimeout(()=>document.getElementById('boot').remove(), 500);
-  render();
+  await cargarExcelAuto(false);   // carga el Excel de SharePoint
+  // Si cargarExcelAuto() falla silenciosamente, render() con DEMO ya está activo
+  if(DATA_RAW === DEMO.slice() || DATA_RAW.length === 0){
+    DATA_RAW = DEMO.slice();
+    render();
+  }
 }, 1600);
