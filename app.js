@@ -1,4 +1,4 @@
-const HOY_DEMO = new Date();
+/*const HOY_DEMO = new Date();
 const fHoy = `${String(HOY_DEMO.getDate()).padStart(2,'0')}/${String(HOY_DEMO.getMonth()+1).padStart(2,'0')}/${HOY_DEMO.getFullYear()}`;
 
 const DEMO = [
@@ -16,7 +16,7 @@ const DEMO = [
   {fecha:fHoy, folio:"95201", almacen:"Finca Marbella", destino:"CEDIS CEDA", transportista:"ALICIA PADILLA", unidad:"48 Pies", hora:"18:21", cajas:361, calidad:"Segundas", producto:"Chanitos Cha Cha Cha 2da"},
   {fecha:fHoy, folio:"72508", almacen:"Finca La Ceiba", destino:"EXPORTACIÓN USA", transportista:"INTERNO", unidad:"40 Pies", hora:"22:38", cajas:1610, calidad:"Premium", producto:"Chanitos Premium EUA"},
   {fecha:fHoy, folio:"85976", almacen:"Finca Marbella", destino:"EXPORTACIÓN Japón", transportista:"GUVA", unidad:"48 Pies", hora:"17:36", cajas:1080, calidad:"Premium", producto:"Chanitos Cha Cha Cha 22XU Kodawari"},
-];
+];*/
 
 // COORDENADAS GEO
 const ORIGENES_GEO = {
@@ -102,10 +102,11 @@ function matchDestino(nm){
   return null;
 }
 
-let DATA_RAW = DEMO.slice();
+let DATA_RAW = [];
 let donutChart, barChart;
 let leafMap = null;
 let mapLayers = [];
+let UBICACIONES = {};
 
 const $ = id => document.getElementById(id);
 const isExport = d => /export|usa|japon|japón|kodawari/i.test(d||"");
